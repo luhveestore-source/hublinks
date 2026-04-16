@@ -7,86 +7,111 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. ESTILO VISUAL (ROSA, DOURADO, PRETO, LILÁS)
+# 2. CSS AVANÇADO PARA CENTRALIZAÇÃO TOTAL E CORES
 st.markdown("""
     <style>
+    /* Forçar fundo preto em tudo */
     .stApp {
         background-color: #0e0e0e;
         color: white;
     }
-    
-    .main-container {
+
+    /* Container para centralizar tudo que for HTML */
+    .center-all {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Título com cores Rosa e Lilás */
+    .main-title {
+        color: #FF69B4; /* Rosa */
+        font-size: 3rem !important;
+        font-weight: bold;
+        margin-top: 20px;
+        text-shadow: 3px 3px #9370DB; /* Lilás */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Texto de boas-vindas centralizado */
+    .welcome-text {
+        color: #E6E6FA; /* Lilás claro */
+        font-size: 1.2rem;
+        line-height: 1.6;
+        max-width: 600px;
+        margin: 20px auto;
         text-align: center;
     }
 
-    .main-title {
-        color: #FF69B4; /* Rosa */
-        font-family: 'Comic Sans MS', cursive, sans-serif;
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-top: 10px;
-        text-shadow: 2px 2px #9370DB; /* Lilás */
-    }
-
-    .welcome-text {
-        color: #E6E6FA; /* Lilás claro */
-        font-size: 1.1rem;
-        line-height: 1.5;
-        margin-bottom: 30px;
-    }
-
+    /* Estilo dos Cards de Links */
     .link-card {
         background: linear-gradient(145deg, #1a1a1a, #2b1a2b);
         border: 2px solid #d4af37; /* Dourado */
         border-radius: 20px;
-        padding: 20px;
-        margin-bottom: 20px;
+        padding: 25px;
+        margin: 10px;
         text-align: center;
         transition: 0.3s;
-        min-height: 180px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        box-shadow: 0px 4px 15px rgba(255, 105, 180, 0.1);
     }
     
     .link-card:hover {
         border-color: #FF69B4;
-        transform: scale(1.05);
+        transform: scale(1.03);
     }
 
+    /* Título dentro do card */
     .card-title {
         color: #d4af37;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         font-weight: bold;
+        margin-bottom: 10px;
     }
 
+    /* Botão "QUERO VER" */
     .btn-acessar {
         display: inline-block;
         color: #ffffff !important;
         background-color: #FF69B4;
         text-decoration: none;
         font-weight: bold;
-        padding: 10px 25px;
+        padding: 12px 30px;
         border-radius: 50px;
-        font-size: 0.9rem;
+        font-size: 1rem;
         margin-top: 15px;
+        border: none;
+    }
+
+    /* Ajuste para as imagens do Streamlit ficarem centralizadas */
+    [data-testid="stImage"] {
+        display: flex;
+        justify-content: center;
+    }
+    
+    /* Remover margens extras das colunas */
+    [data-testid="column"] {
+        display: flex;
+        justify-content: center;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# 3. CABEÇALHO (LOGO E BOAS-VINDAS)
-st.markdown("<div class='main-container'>", unsafe_allow_html=True)
+# 3. CONTEÚDO CENTRALIZADO
+st.markdown("<div class='center-all'>", unsafe_allow_html=True)
 
+# Exibição do Logo (Aumentado para 400px para ser o destaque)
 try:
-    # Logo Centralizado e Maior
-    st.image("1000396187.jpeg", width=350) 
+    st.image("1000396187.jpeg", width=400)
 except:
-    st.write("✨ **Luhvee Stores** ✨")
+    st.write("✨ **LUHVEE STORES** ✨")
 
+# Título e Textos
 st.markdown("<h1 class='main-title'>✨ Luhvee Stores ✨</h1>", unsafe_allow_html=True)
 
 st.markdown("""
@@ -96,43 +121,41 @@ st.markdown("""
         Desde produtos incríveis até conteúdos exclusivos, a Luhvee Stores reúne as melhores oportunidades para você! 🛒🎁
     </div>
     """, unsafe_allow_html=True)
+
 st.markdown("</div>", unsafe_allow_html=True)
 
-# 4. FUNÇÃO PARA CARDS
-def render_card(titulo, descricao, url):
-    st.markdown(f"""
-    <div class="link-card">
-        <div class="card-title">{titulo}</div>
-        <div style="color: #b0b0b0; font-size: 0.85rem; margin-top: 5px;">{descricao}</div>
-        <a href="{url}" target="_blank" class="btn-acessar">QUERO VER! ✨</a>
-    </div>
-    """, unsafe_allow_html=True)
-
-# 5. GRADE DE PRODUTOS (3 COLUNAS ALINHADAS)
+# 4. CARDS DE LINKS (Organizados em colunas centralizadas)
+# Usamos colunas, mas o CSS acima garante que o conteúdo dentro delas centralize
 col1, col2, col3 = st.columns(3)
 
-with col1:
-    render_card("Shopee 🛍️", "Meus achadinhos favoritos com os melhores preços.", "https://collshp.com/luhveestores")
+def render_card(col, titulo, descricao, url):
+    with col:
+        st.markdown(f"""
+        <div class="link-card">
+            <div class="card-title">{titulo}</div>
+            <div style="color: #b0b0b0; font-size: 0.9rem;">{descricao}</div>
+            <a href="{url}" target="_blank" class="btn-acessar">QUERO VER! ✨</a>
+        </div>
+        """, unsafe_allow_html=True)
 
-with col2:
-    render_card("Mercado Livre 🤝", "Produtos selecionados com entrega super rápida.", "https://www.mercadolivre.com.br/social/axwelloliveira")
+render_card(col1, "Shopee 🛍️", "Achadinhos favoritos.", "https://collshp.com/luhveestores")
+render_card(col2, "Mercado Livre 🤝", "Entrega rápida.", "https://www.mercadolivre.com.br/social/axwelloliveira")
+render_card(col3, "Internacional 🌎", "Novidades globais.", "https://luhvee-store.systeme.io/prodentim-special")
 
-with col3:
-    render_card("Internacional 🌎", "Oportunidades e conteúdos exclusivos globais.", "https://luhvee-store.systeme.io/prodentim-special")
+st.markdown("<br><hr style='border: 0.5px solid #333;'><br>", unsafe_allow_html=True)
 
-st.write("---")
-
-# 6. REDES SOCIAIS E SUPORTE
+# 5. RODAPÉ E REDES SOCIAIS
 st.markdown("<h3 style='text-align: center; color: #9370DB;'>Não esquece de nos seguir, fique por dentro das melhores promoções ❤️</h3>", unsafe_allow_html=True)
 
-social_col1, social_col2, social_col3, social_col4 = st.columns(4)
-social_col1.link_button("Insta 📸", "https://instagram.com/luhveestore", use_container_width=True)
-social_col2.link_button("TikTok ♪", "https://www.tiktok.com/@luhvee.stores", use_container_width=True)
-social_col3.link_button("Telegram ✈️", "https://t.me/luhveestores", use_container_width=True)
-social_col4.link_button("Grupo VIP 💬", "https://chat.whatsapp.com/IBneTrHJemMLla4wzU8Wbj", use_container_width=True)
+# Redes sociais em botões
+c1, c2, c3, c4 = st.columns(4)
+c1.link_button("Insta 📸", "https://instagram.com/luhveestore", use_container_width=True)
+c2.link_button("TikTok ♪", "https://www.tiktok.com/@luhvee.stores", use_container_width=True)
+c3.link_button("Telegram ✈️", "https://t.me/luhveestores", use_container_width=True)
+c4.link_button("Grupo VIP 💬", "https://chat.whatsapp.com/IBneTrHJemMLla4wzU8Wbj", use_container_width=True)
 
 st.write("")
-# BOTÃO DE SUPORTE PERSONALIZADO
+# SUPORTE DESTAQUE
 st.link_button("💖 Fale com a Luh da Luhvee 💖", "https://wa.me/5511948021428", type="primary", use_container_width=True)
 
-st.markdown("<br><p style='text-align: center; opacity: 0.5;'>Feito com amor por Luhvee Stores ✨</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; opacity: 0.5; margin-top: 50px;'>Feito com amor por Luhvee Stores ✨</p>", unsafe_allow_html=True)
