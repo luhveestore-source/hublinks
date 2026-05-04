@@ -7,7 +7,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. CSS PERSONALIZADO (APENAS ROSA, PRETO E LILÁS)
+# 2. CSS PERSONALIZADO (ROSA, PRETO E LILÁS)
 st.markdown("""
     <style>
     .stApp {
@@ -95,10 +95,10 @@ render_card(col1, "Shopee 🛍️", "https://collshp.com/luhveestores")
 render_card(col2, "Mercado Livre 🤝", "https://www.mercadolivre.com.br/social/axwelloliveira")
 render_card(col3, "Shein ✨", "https://onelink.shein.com/5/5ohy42r5xmbb")
 
-# 4.1 CARDS DE LINKS (LINHA 2: 2 COLUNAS)
-st.write("") # Espaçamento
+# 4.1 CARDS DE LINKS (LINHA 2: 2 COLUNAS) - AQUI ESTÁ A CORREÇÃO
+st.write("") 
 col4, col5 = st.columns(2)
-render_card(col4, "Loja de Sapatos 👠", "https://Luhvee.com")
+render_card(col4, "Loja Virtual LuhVee Stores ❤️", "https://luhveestores.com")
 render_card(col5, "Internacional 🌎", "https://luhvee-store.systeme.io/prodentim-special")
 
 st.write("---")
