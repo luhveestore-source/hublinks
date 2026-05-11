@@ -7,8 +7,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. DOCUMENTAÇÃO DO CSS (ESTILO VISUAL)
-# Definimos o fundo preto, cores rosa (#FF69B4) e lilás (#9370DB)
+# 2. ESTILO VISUAL (CSS)
 st.markdown("""
     <style>
     .stApp { background-color: #0e0e0e; color: white; }
@@ -46,13 +45,11 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # 3. CABEÇALHO
-# Nota: Certifique-se de que o arquivo da imagem está na mesma pasta.
 st.image("1000396187.jpeg", width=180) 
 st.markdown("<div class='main-title'>✨ Luhvee Stores ✨</div>", unsafe_allow_html=True)
 st.markdown("<p style='color: #E6E6FA;'>Tudo o que você ama em um só lugar! 🛍️</p>", unsafe_allow_html=True)
 
 # 4. FUNÇÃO REUTILIZÁVEL PARA OS CARDS
-# Esta função evita repetir código HTML para cada botão novo.
 def render_card(col, titulo, url):
     with col:
         st.markdown(f"""
@@ -68,14 +65,11 @@ render_card(col1, "Shopee 🛍️", "https://collshp.com/luhveestores")
 render_card(col2, "Mercado Livre 🤝", "https://www.mercadolivre.com.br/social/axwelloliveira")
 render_card(col3, "Shein ✨", "https://onelink.shein.com/5/5ohy42r5xmbb")
 
-# 6. LINHA 2 DE LINKS (3 COLUNAS) - ATUALIZADO
+# 6. LINHA 2 DE LINKS (FOCO NO CATÁLOGO ATUAL)
 st.write("") 
-col4, col5, col6 = st.columns(3)
-# Atualização: Link Shopintegra
-render_card(col4, "Catálogo de Calçados 👠", "https://www.shopintegra.com.br/catalogo/luhvee-stores-calcados")
-# Atualização: Cartão Digital
-render_card(col5, "Cartão Digital 🎫", "https://tuframe.com/luhveestores")
-render_card(col6, "Internacional 🌎", "https://luhvee-store.systeme.io/prodentim-special")
+# Usamos 3 colunas mas preenchemos apenas a do meio para ficar centralizado
+_, col_center, _ = st.columns([1, 2, 1])
+render_card(col_center, "Catálogo de Calçados 👠", "https://www.shopintegra.com.br/catalogo/luhvee-stores-calcados")
 
 st.write("---")
 
