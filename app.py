@@ -1,73 +1,103 @@
 import streamlit as st
 
-# Configuração da página
-st.set_page_config(page_title="Luhvee Stores | Hub", page_icon="🛍️")
+# 1. CONFIGURAÇÃO DA PÁGINA
+st.set_page_config(
+    page_title="Luhvee Stores | ✨",
+    page_icon="💖",
+    layout="centered"
+)
 
-# Estilo Personalizado (Cores: Preto, Rosa, Lilás e Dourado)
+# 2. DOCUMENTAÇÃO DO CSS (ESTILO VISUAL)
+# Definimos o fundo preto, cores rosa (#FF69B4) e lilás (#9370DB)
 st.markdown("""
     <style>
-    .main {
-        background-color: #000000;
-        color: #FFFFFF;
+    .stApp { background-color: #0e0e0e; color: white; }
+    .stMainBlockContainer { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .main-title {
+        color: #FF69B4; font-size: 2.2rem; font-weight: bold;
+        text-shadow: 2px 2px #9370DB; margin: 10px 0;
     }
-    .stButton>button {
-        width: 100%;
+    .link-card {
+        background: rgba(147, 112, 219, 0.1); 
+        border: 2px solid #FF69B4; 
         border-radius: 20px;
-        background-color: #FF69B4; /* Rosa */
-        color: white;
-        border: 2px solid #D4AF37; /* Dourado */
-        font-weight: bold;
-    }
-    .stButton>button:hover {
-        background-color: #9370DB; /* Lilás */
-        border: 2px solid #FFFFFF;
-    }
-    h1, h2, h3 {
-        color: #D4AF37 !important; /* Dourado */
-        text-align: center;
-    }
-    .motivos-box {
-        background-color: #1A1A1A;
         padding: 20px;
-        border-radius: 15px;
-        border: 1px solid #9370DB;
-        margin-bottom: 20px;
+        text-align: center;
+        min-height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+        transition: 0.3s;
     }
+    .link-card:hover { border-color: #9370DB; transform: scale(1.02); }
+    .btn-acessar {
+        background-color: #FF69B4 !important; color: white !important;
+        text-decoration: none; font-weight: bold; padding: 10px 20px;
+        border-radius: 50px; font-size: 0.8rem; margin-top: 15px; display: inline-block;
+    }
+    .about-box {
+        background-color: #1a1a1a; border: 1px solid #9370DB; 
+        border-radius: 15px; padding: 25px; margin-top: 40px; color: #E6E6FA; 
+    }
+    div.stButton > button { background-color: #9370DB !important; color: white !important; border: none !important; }
     </style>
     """, unsafe_allow_html=True)
 
-# Cabeçalho
-st.title("Luhvee Stores")
-st.subheader("Curadoria & Estilo por Luana Avelino")
+# 3. CABEÇALHO
+# Nota: Certifique-se de que o arquivo da imagem está na mesma pasta.
+st.image("1000396187.jpeg", width=180) 
+st.markdown("<div class='main-title'>✨ Luhvee Stores ✨</div>", unsafe_allow_html=True)
+st.markdown("<p style='color: #E6E6FA;'>Tudo o que você ama em um só lugar! 🛍️</p>", unsafe_allow_html=True)
 
-# 1. Os 3 Motivos para escolher a Luhvee (Organizado e Clean)
-with st.container():
-    st.markdown('<div class="motivos-box">', unsafe_allow_html=True)
-    st.markdown("### ✨ Por que a Luhvee Stores?")
-    st.write("💎 **Curadoria Especialista:** Selecionamos a dedo os melhores achadinhos da Shopee, Shein e Mercado Livre. O ouro chega até você.")
-    st.write("🚚 **Logística Sem Fronteiras:** Entrega rápida e segura para absolutamente qualquer lugar do Brasil.")
-    st.write("💰 **Estilo que Cabe no Bolso:** Tendência das passarelas com a economia que você ama.")
-    st.markdown('</div>', unsafe_allow_html=True)
+# 4. FUNÇÃO REUTILIZÁVEL PARA OS CARDS
+# Esta função evita repetir código HTML para cada botão novo.
+def render_card(col, titulo, url):
+    with col:
+        st.markdown(f"""
+        <div class="link-card">
+            <div style="color: #FF69B4; font-size: 1rem; font-weight: bold;">{titulo}</div>
+            <a href="{url}" target="_blank" class="btn-acessar">QUERO VER! ✨</a>
+        </div>
+        """, unsafe_allow_html=True)
 
-# 2. Botões de Links (Ajustados com seus links atuais)
-st.markdown("### 🔗 Nossos Canais")
+# 5. LINHA 1 DE LINKS (3 COLUNAS)
+col1, col2, col3 = st.columns(3)
+render_card(col1, "Shopee 🛍️", "https://collshp.com/luhveestores")
+render_card(col2, "Mercado Livre 🤝", "https://www.mercadolivre.com.br/social/axwelloliveira")
+render_card(col3, "Shein ✨", "https://onelink.shein.com/5/5ohy42r5xmbb")
 
-if st.button("👠 Catálogo de Calçados (Shopintegra)"):
-    st.write("Redirecionando... https://www.shopintegra.com.br/catalogo/luhvee-stores-shoes")
+# 6. LINHA 2 DE LINKS (3 COLUNAS) - ATUALIZADO
+st.write("") 
+col4, col5, col6 = st.columns(3)
+# Atualização: Link Shopintegra
+render_card(col4, "Catálogo de Calçados 👠", "https://www.shopintegra.com.br/catalogo/luhvee-stores-calcados")
+# Atualização: Cartão Digital
+render_card(col5, "Cartão Digital 🎫", "https://tuframe.com/luhveestores")
+render_card(col6, "Internacional 🌎", "https://luhvee-store.systeme.io/prodentim-special")
 
-if st.button("🛍️ Vitrine Shopee (Achadinhos)"):
-    st.write("Redirecionando... https://collshp.com/luhveestores?view=storefront")
+st.write("---")
 
-if st.button("📢 Grupo VIP de Ofertas (WhatsApp)"):
-    st.write("Redirecionando... https://chat.whatsapp.com/IBneTrHJemMLla4wzU8Wbj")
+# 7. REDES SOCIAIS E SUPORTE
+st.markdown("<p style='text-align: center; color: #FF69B4;'>Não esquece de nos seguir ❤️</p>", unsafe_allow_html=True)
+s1, s2, s3, s4 = st.columns(4)
+s1.link_button("Insta 📸", "https://instagram.com/luhveestore", use_container_width=True)
+s2.link_button("TikTok ♪", "https://www.tiktok.com/@luhvee.stores", use_container_width=True)
+s3.link_button("Telegram ✈️", "https://t.me/luhveestores", use_container_width=True)
+s4.link_button("Grupo VIP 💬", "https://chat.whatsapp.com/IBneTrHJemMLla4wzU8Wbj", use_container_width=True)
 
-if st.button("📸 Siga no Instagram @luhveestore"):
-    st.write("Redirecionando... https://instagram.com/luhveestore")
+st.write("")
+st.link_button("💖 Fale com a Luh da Luhvee 💖", "https://wa.me/5511948021428", type="primary", use_container_width=True)
 
-# Rodapé com a mensagem formulada
-st.markdown("---")
-st.markdown("""
-**Oi! Que bom ter você aqui!** 🛍️  
-Nosso trabalho é garimpar o melhor em estilo e economia para você.  
-*Entregamos em todo o Brasil com o cuidado que você merece.* **Bjs da Luh ❤️🖤✨**
-""")
+# 8. SEÇÃO SOBRE
+st.markdown(f"""
+    <div class="about-box">
+        <h3 style="color: #FF69B4; margin-bottom: 15px;">✨ Quem é a LuhVee Stores? ✨</h3>
+        <p>A LuhVee Stores não é só uma loja… é uma <b>experiência 💖</b></p>
+        <p>Selecionamos produtos que realmente valem a pena, com ofertas incríveis.</p>
+        <p style="color: #FF69B4; font-weight: bold;">Bem-vindo à LuhVee Stores 💕</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.markdown("<br><p style='opacity: 0.3; font-size: 0.7rem;'>Luhvee Stores ✨</p>", unsafe_allow_html=True)
