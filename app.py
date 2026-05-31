@@ -59,17 +59,18 @@ def render_card(col, titulo, url):
         </div>
         """, unsafe_allow_html=True)
 
-# 5. LINHA 1 DE LINKS (3 COLUNAS)
+# 5. LINHA 1 DE LINKS (3 COLUNAS) - FOCO NAS LOJAS PRINCIPAIS
 col1, col2, col3 = st.columns(3)
-render_card(col1, "Shopee 🛍️", "https://collshp.com/luhveestores")
-render_card(col2, "Mercado Livre 🤝", "https://www.mercadolivre.com.br/social/axwelloliveira")
-render_card(col3, "Shein ✨", "https://onelink.shein.com/5/5ohy42r5xmbb")
+render_card(col1, "Loja Virtual 🌐", "https://luhveestores.com")
+render_card(col2, "Loja Shopee 🛍️", "https://shopee.com.br/shop/1838869444")
+render_card(col3, "Achadinhos Shopee 💸", "https://collshp.com/luhveestores")
 
-# 6. LINHA 2 DE LINKS (FOCO NO CATÁLOGO ATUAL)
+# 6. LINHA 2 DE LINKS (3 COLUNAS) - OUTROS CANAIS E CATÁLOGOS
 st.write("") 
-# Usamos 3 colunas mas preenchemos apenas a do meio para ficar centralizado
-_, col_center, _ = st.columns([1, 2, 1])
-render_card(col_center, "Catálogo de Calçados 👠", "https://www.shopintegra.com.br/catalogo/luhvee-stores-calcados")
+col4, col5, col6 = st.columns(3)
+render_card(col4, "Mercado Livre 🤝", "https://www.mercadolivre.com.br/social/axwelloliveira")
+render_card(col5, "Catálogo de Calçados 👠", "https://www.shopintegra.com.br/catalogo/luhvee-stores-calcados")
+render_card(col6, "Shein ✨", "https://onelink.shein.com/5/5ohy42r5xmbb")
 
 st.write("---")
 
